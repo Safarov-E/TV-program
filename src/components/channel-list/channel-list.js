@@ -12,13 +12,22 @@ class ChannelList extends Component {
         return (
             <div className="channel-list">
                 <div className="channel-list-group">
-                    <ul>
-                        {
-                            channels.map((item, index) => {
-                                return <li key={index}>{item.name}</li>
-                            })
-                        }
-                    </ul>
+                    <div className="channel-list-slider">
+                        <h2>Темы каналов</h2>
+                        <div className="action-button-slider">
+                            <button className="slider-arrow-left" title="Предыдущий слайд"></button>
+                            <button className="slider-arrow-right" title="Следующий слайд"></button>
+                        </div>
+                    </div>
+                    <div className="channel-list-group">
+                        <ul>
+                            {
+                                channels.map((item, index) => {
+                                    return <li key={index}>{item.name}</li>
+                                })
+                            }
+                        </ul>
+                    </div>
                 </div>
             </div>
         )
