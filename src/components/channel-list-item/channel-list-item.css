@@ -1,0 +1,12 @@
+.tv-programm__chanels-item {
+    width: 1200px;
+    margin: 20px auto;
+}
+.tv-programm__channel ul li {
+    display: flex;
+    color: #fff;
+    margin-bottom: 10px;
+}
+.tv-programm__channel ul li span  {
+    margin-right: 20px;
+}
