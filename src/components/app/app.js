@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
-import ChannelList from '../channel-list'
+import ChannelTopics from '../channel-topics';
+import ChannelsList from '../channels-list';
+import {Route, Switch} from 'react-router-dom';
 import './app.css';
 
 class App extends Component {
     render() {
         return (
-            <>
-                <ChannelList />
-            </>
+            <Switch>
+                <Route path="/" exact component={ChannelTopics} />
+                <Route path="/:thid" exact component={ChannelsList} />
+            </Switch>
         )
     }
 }

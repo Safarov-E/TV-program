@@ -1,0 +1,27 @@
+.view-all-channels {
+    width: 1200px;
+    margin: 50px auto;
+}
+.view-channels h2 {
+    color: #fff;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+.list-channels-item ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+.list-channels-item ul li {
+    display: flex;
+    width: 23%;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.list-channels-item ul li img {
+    justify-content: space-between;
+    background: #fff;
+    margin-right: 10px;
+}
+.list-channels-item ul li p {
+    color: #fff;
+}
