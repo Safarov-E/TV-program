@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { channelsListFetchData } from '../../store/actions/channelsList';
 import ChannelTopics from '../channel-topics';
+import {Link} from 'react-router-dom';
 import './channels-list.css';
 
 class ChannelsList extends Component {
@@ -21,8 +22,8 @@ class ChannelsList extends Component {
                                 {
                                     channels.map((item, index) => {
                                         return <li key={index}>
-                                            <img src={"http://epg.domru.ru" + item.logo} />
-                                            <p>{item.title}</p>
+                                            <img src={"http://epg.domru.ru" + item.logo} alt="logo" />
+                                            <Link to={'/' + this.props.match.params.thid + '/' + item.xvid}>{item.title}</Link>
                                         </li>
                                     })
                                 }
