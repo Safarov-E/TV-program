@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {channelsListItemFetchData} from '../../store/actions/channelListItem';
 import ChannelTopics from '../channel-topics';
+import Spinner from '../Spinner';
 import './channel-list-item.css';
 
 class ChannelListItem extends Component {
@@ -9,7 +10,7 @@ class ChannelListItem extends Component {
         this.props.fetchData(this.props.match.params.xvid)
     }
     render() {
-        const {channels} = this.props;
+        const {channels, loading} = this.props;
         return (
             <>
                 <ChannelTopics />
@@ -17,8 +18,7 @@ class ChannelListItem extends Component {
                     <div className="tv-programm__channel">
                         <ul>
                             {
-                                typeof channels[this.props.match.params.xvid] === 'undefined' ?
-                                <div>Loading...</div> :
+                                loading ? <Spinner /> :
                                 channels[this.props.match.params.xvid].map((item, index) => {
                                     const startProgram = new Date(item.start);
                                     const duration = +item.duration;
@@ -55,7 +55,8 @@ class ChannelListItem extends Component {
 
 const mapStateToProps = state => {
     return {
-        channels: state.channelListItem.channelListItem
+        channels: state.channelListItem.channelListItem,
+        loading: state.channelListItem.loading
     }
 };
 

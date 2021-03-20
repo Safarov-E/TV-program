@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { channelsListFetchData } from '../../store/actions/channelsList';
 import ChannelTopics from '../channel-topics';
+import Spinner from '../Spinner'
 import {Link} from 'react-router-dom';
 import './channels-list.css';
 
@@ -10,7 +11,7 @@ class ChannelsList extends Component {
         this.props.fetchData(this.props.match.params.thid)
     }
     render() {
-        const {channels} = this.props;
+        const {channels, loading} = this.props;
         return (
             <>
                 <ChannelTopics />
@@ -20,6 +21,7 @@ class ChannelsList extends Component {
                         <div className="list-channels-item">
                             <ul>
                                 {
+                                    loading ? <Spinner /> :
                                     channels.map((item, index) => {
                                         return <li key={index}>
                                             <img src={"http://epg.domru.ru" + item.logo} alt="logo" />
@@ -38,7 +40,8 @@ class ChannelsList extends Component {
 
 const mapStateToProps = state => {
     return {
-        channels: state.channelsList.channelList
+        channels: state.channelsList.channelList,
+        loading: state.channelsList.loading
     }
 };
 

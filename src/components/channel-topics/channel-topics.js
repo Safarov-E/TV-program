@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { channelsFetchData } from '../../store/actions/channels';
 import { channelsListFetchData } from '../../store/actions/channelsList';
-import {NavLink} from 'react-router-dom'
+import {NavLink} from 'react-router-dom';
+import Spinner from '../Spinner'
 import './channel-topics.css';
 
 class ChannelTopics extends Component {
@@ -31,8 +32,9 @@ class ChannelTopics extends Component {
         this.props.channelList(thid)
     }
     render() {
-        const {channels} = this.props;
+        const {channels, loading} = this.props;
         const {left} = this.state;
+        console.log(loading)
         return (
             <div className="channel-list">
                 <div className="channel-list-group">
@@ -54,6 +56,7 @@ class ChannelTopics extends Component {
                     <div className="channel-list__slider">
                         <ul style={{left: left + 'px'}}>
                             {
+                                loading ? <Spinner /> :
                                 channels.map((item, index) => {
                                     return <li key={index}>
                                         <NavLink to={"/" + item.thid} onClick={() => this.listOfChannels(item.thid)}>{item.name}</NavLink>
@@ -70,7 +73,8 @@ class ChannelTopics extends Component {
 
 const mapStateToProps = state => {
     return {
-        channels: state.channelTopics.channelList
+        channels: state.channelTopics.channelList,
+        loading: state.channelTopics.loading,
     }
 };
 
