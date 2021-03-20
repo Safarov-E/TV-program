@@ -20,9 +20,28 @@ class ChannelListItem extends Component {
                                 typeof channels[this.props.match.params.xvid] === 'undefined' ?
                                 <div>Loading...</div> :
                                 channels[this.props.match.params.xvid].map((item, index) => {
+                                    const startProgram = new Date(item.start);
+                                    const duration = +item.duration;
+                                    const h = startProgram.getHours();
+                                    const m = startProgram.getMinutes();
+                                    const hours = h < 10 ? ("0" + h) : h
+                                    const minutes = m < 10 ? ("0" + m) : m
+
+                                    const curretTime = Math.floor((new Date()).getTime() / 1000);
+                                    const start = startProgram.getTime() / 1000;
+                                    const end = start + duration;
+                                    const currentProgress = 100 - ((end - curretTime) / (duration * 0.1));
+
                                     return <li key={index}>
-                                            <span>{item.start.substring(11, 16)}</span>
-                                            <p>{item.title}</p>
+                                                <div className="program__list-link">
+                                                    <span>{hours}:{minutes}</span>
+                                                    <p>{item.title}</p>
+                                                </div>
+                                                {curretTime >= start && curretTime <= end ? 
+                                                <div className="program__list-item-progress">
+                                                    <div className="program__list-item-progress-bar" style={{width: `${currentProgress}%`}}></div>
+                                                </div>
+                                                : null}
                                             </li>
                                 })
                             }

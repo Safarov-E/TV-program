@@ -5,8 +5,23 @@
 .tv-programm__channel ul li {
     display: flex;
     color: #fff;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    width: 25%;
+    display: block;
 }
 .tv-programm__channel ul li span  {
     margin-right: 20px;
+}
+.program__list-link {
+    display: flex;
+}
+.program__list-item-progress {
+    margin: 10px 0;
+    height: 4px;
+    background: #2a3646;
+    width: 100%;
+}
+.program__list-item-progress-bar {
+    height: 4px;
+    background: #fff;
 }
