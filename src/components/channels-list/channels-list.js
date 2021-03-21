@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { channelsListFetchData } from '../../store/actions/channelsList';
 import ChannelTopics from '../channel-topics';
-import Spinner from '../Spinner'
+import Spinner from '../Spinner';
 import {Link} from 'react-router-dom';
 import './channels-list.css';
 

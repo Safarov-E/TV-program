@@ -10,7 +10,7 @@ class ChannelListItem extends Component {
         this.props.fetchData(this.props.match.params.xvid)
     }
     render() {
-        const {channels, loading} = this.props;
+        const {channels, loading, match} = this.props;
         return (
             <>
                 <ChannelTopics />
@@ -18,7 +18,7 @@ class ChannelListItem extends Component {
                     <div className="tv-programm__channel">
                         <ul>
                             {
-                                loading ? <Spinner /> :
+                                loading || typeof channels[match.params.xvid] === 'undefined' ? <Spinner /> :
                                 channels[this.props.match.params.xvid].map((item, index) => {
                                     const startProgram = new Date(item.start);
                                     const duration = +item.duration;
