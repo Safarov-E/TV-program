@@ -3,15 +3,15 @@ import {connect} from 'react-redux';
 import { channelsFetchData } from '../../store/actions/channels';
 import { channelsListFetchData } from '../../store/actions/channelsList';
 import {NavLink} from 'react-router-dom';
-import Spinner from '../Spinner'
-import './channel-topics.css';
+import Spinner from '../spinner';
+import './group-list.css';
 
-class ChannelTopics extends Component {
+class GroupList extends Component {
     componentDidMount() {
-        this.props.fetchData("http://epg.domru.ru/channeltheme/list")
+        this.props.fetchData()
     }
     listOfChannels = (thid) => {
-        this.props.channelList(thid)
+        this.props.channelList(thid);
     }
     render() {
         const {channels, loading} = this.props;
@@ -51,4 +51,4 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChannelTopics);
+export default connect(mapStateToProps, mapDispatchToProps)(GroupList);

@@ -1,4 +1,5 @@
 import {CHANNELS_LIST_ITEM_FETCH_DATA_SUCCESS} from './action-types';
+import APP_CONFIG from '../../config';
 
 export function channelsListItemFetchDataSuccess(channels) {
     return {
@@ -11,7 +12,7 @@ export function channelsListItemFetchData(xvid) {
     const date = new Date();
     const currentDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
     return (dispatch) => {
-        fetch(`http://epg.domru.ru/program/list?domain=perm&date_from=${currentDate}+00%3A00%3A00&date_to=${currentDate}+23%3A55%3A00&xvid=${xvid}`)
+        fetch(`${APP_CONFIG.baseUrl}/program/list?domain=perm&date_from=${currentDate}+00%3A00%3A00&date_to=${currentDate}+23%3A55%3A00&xvid=${xvid}`)
             .then(response => {
                 if(!response.ok) throw new Error(response.statusText)
 

@@ -1,13 +1,22 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {channelsListItemFetchData} from '../../store/actions/channelListItem';
-import Spinner from '../Spinner';
-import './channel-list-item.css';
+import Spinner from '../spinner';
+import ProgramListItem from '../program-list-item'
+import './program-list.css';
 
-class ChannelListItem extends Component {
+class ProgramList extends Component {
     componentDidMount() {
-        console.log('componentDidMount()');
         this.props.fetchData(this.props.match.params.xvid);
+    }
+    getStringFromTime = (time) => {
+        let out = "";
+        const h = time.getHours();
+        const m = time.getMinutes();
+
+        out += ((h < 10) ? ("0" + h) : h) + ":";
+        out += ((m < 10) ? ("0" + m) : m);
+        return out;
     }
     render() {
         const {channels, loading, match} = this.props;
@@ -20,26 +29,20 @@ class ChannelListItem extends Component {
                                 channels[this.props.match.params.xvid].map((item, index) => {
                                     const startProgram = new Date(item.start);
                                     const duration = +item.duration;
-                                    const h = startProgram.getHours();
-                                    const m = startProgram.getMinutes();
-                                    const hours = h < 10 ? ("0" + h) : h;
-                                    const minutes = m < 10 ? ("0" + m) : m;
+
                                     const curretTime = (new Date()).getTime() / 1000;
                                     const start = startProgram.getTime() / 1000;
                                     const end = start + duration;
                                     const currentProgress = (curretTime - start) * (100 / duration);
+                                    const isCurrentProgram = curretTime >= start && curretTime <= end
 
-                                    return <li key={index}>
-                                                <div className="program__list-link">
-                                                    <span>{hours}:{minutes}</span>
-                                                    <p>{item.title}</p>
-                                                </div>
-                                                {curretTime >= start && curretTime <= end ? 
-                                                <div className="program__list-item-progress">
-                                                    <div className="program__list-item-progress-bar" style={{width: `${currentProgress}%`}}></div>
-                                                </div>
-                                                : null}
-                                            </li>
+                                    return <ProgramListItem
+                                                key={index}
+                                                startProgram={this.getStringFromTime(startProgram)}
+                                                title={item.title}
+                                                currentProgress={currentProgress}
+                                                curretTime={isCurrentProgram}
+                                            />
                                 })
                             }
                         </ul>
@@ -62,4 +65,4 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChannelListItem);
+export default connect(mapStateToProps, mapDispatchToProps)(ProgramList);

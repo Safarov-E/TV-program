@@ -1,4 +1,5 @@
 import {CHANNELS_FETCH_DATA_SUCCESS} from './action-types';
+import APP_CONFIG from '../../config';
 
 export function channelsFetchDataSuccess(channels) {
     return {
@@ -7,11 +8,10 @@ export function channelsFetchDataSuccess(channels) {
     }
 }
 
-export function channelsFetchData(url) {
+export function channelsFetchData() {
     return (dispatch) => {
-        fetch(url)
+        fetch(`${APP_CONFIG.baseUrl}/channeltheme/list`)
             .then(response => {
-                console.log('response', response);
                 if(!response.ok) throw new Error(response.statusText)
 
                 return response;

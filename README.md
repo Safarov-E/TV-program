@@ -1,7 +1,7 @@
 # TV-program
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  
-Check the demo: [https://Safarov-E.github.io/TV-program](https://elshad98.github.io/TV-program)    
+Check the demo: [https://Safarov-E.github.io/TV-program](https://Safarov-E.github.io/TV-program)    
 
 ## Instructions
 

@@ -1,4 +1,5 @@
 import channelsListReducer from './channelsList';
+import {CHANNELS_LIST_FETCH_DATA_SUCCESS} from '../actions/action-types';
 import {channelsListFetchDataSuccess} from '../actions/channelsList';
 
 const listChannelsThemes = [
@@ -14,6 +15,24 @@ describe('checking the work of reducer', () => {
             loading: true
         } 
     })
+    it('channelsListFetchDataSuccess', () => {
+        expect(channelsListFetchDataSuccess(listChannelsThemes)).toEqual({
+            type: CHANNELS_LIST_FETCH_DATA_SUCCESS,
+            payload: listChannelsThemes
+        });
+    })
+    it('CHANNELS_LIST_FETCH_DATA_SUCCESS', () => {
+        const actionCreator = {
+            type: CHANNELS_LIST_FETCH_DATA_SUCCESS,
+            payload: listChannelsThemes
+        }
+        const newState = channelsListReducer(state, actionCreator);
+        expect(newState).toEqual({
+            ...newState,
+            loading: false,
+            channelList: actionCreator.payload
+        });
+    })
     it('adding channel themes', () => {
         const newState = channelsListReducer(state, action);
         expect(newState.channelList.length).toBe(1);
@@ -22,10 +41,12 @@ describe('checking the work of reducer', () => {
     it('the spinner stopped spinning', () => {
         const newState = channelsListReducer(state, action);
         expect(newState.loading).toBe(false);
+        expect(newState.loading).toBeFalsy();
     })
     it('should return default state', () => {
         const newState = channelsListReducer(state, {});
         expect(newState.channelList).toEqual([]);
         expect(newState.loading).toEqual(true);
+        expect(newState.loading).toBeTruthy();
     })
 })

@@ -1,4 +1,5 @@
 import {CHANNELS_LIST_FETCH_DATA_SUCCESS} from './action-types';
+import APP_CONFIG from '../../config';
 
 export function channelsListFetchDataSuccess(channels) {
     return {
@@ -7,9 +8,9 @@ export function channelsListFetchDataSuccess(channels) {
     }
 }
 
-export function channelsListFetchData(thid = 1) {
+export function channelsListFetchData(thid) {
     return (dispatch) => {
-        fetch(`https://epg.domru.ru/channel/list?domain=perm&thid=${thid}`)
+        fetch(`${APP_CONFIG.baseUrl}/channel/list?domain=perm&thid=${thid}`)
             .then(response => {
                 if(!response.ok) throw new Error(response.statusText)
 
