@@ -1,3 +1,5 @@
+import {CHANNELS_LIST_FETCH_DATA_SUCCESS} from '../actions/action-types';
+
 const initialState = {
     channelList: [],
     loading: true
@@ -5,7 +7,7 @@ const initialState = {
 
 export default function channelsListReducer(state = initialState, action) {
     switch(action.type) {
-        case "CHANNELS_LIST_FETCH_DATA_SUCCESS":
+        case CHANNELS_LIST_FETCH_DATA_SUCCESS:
             return {...state, channelList: action.payload, loading: false}
         default:
             return state;

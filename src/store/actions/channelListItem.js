@@ -1,6 +1,8 @@
+import {CHANNELS_LIST_ITEM_FETCH_DATA_SUCCESS} from './action-types';
+
 export function channelsListItemFetchDataSuccess(channels) {
     return {
-        type: "CHANNELS_LIST_ITEM_FETCH_DATA_SUCCESS",
+        type: CHANNELS_LIST_ITEM_FETCH_DATA_SUCCESS,
         payload: channels
     }
 }
