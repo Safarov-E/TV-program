@@ -7,54 +7,20 @@ import Spinner from '../Spinner'
 import './channel-topics.css';
 
 class ChannelTopics extends Component {
-    state = {
-        left: 0,
-        right: 0,
-    }
     componentDidMount() {
         this.props.fetchData("http://epg.domru.ru/channeltheme/list")
-    }
-    sliderLeft = () => {
-        if(this.state.left >= -900){
-            this.setState(({left}) => {
-                return {left: left - 102}
-            })
-        }
-    }
-    sliderRight = () => {
-        if(this.state.left < 0) {
-            this.setState(({left}) => {
-                return {left: left + 102}
-            })
-        }
     }
     listOfChannels = (thid) => {
         this.props.channelList(thid)
     }
     render() {
         const {channels, loading} = this.props;
-        const {left} = this.state;
-        console.log(loading)
         return (
             <div className="channel-list">
                 <div className="channel-list-group">
-                    <div className="channel-list-slider">
-                        <h2>Темы каналов</h2>
-                        <div className="action-button-slider">
-                            <button 
-                                onClick={this.sliderRight} 
-                                className="slider-arrow-right"
-                                style={{border: "1px solid " + (left === 0 ? "#545454" : "#fff")}}
-                                title="Следующий слайд"></button>
-                            <button 
-                                onClick={this.sliderLeft} 
-                                className="slider-arrow-left" 
-                                style={{border: "1px solid " + (left === -918 ? "#545454" : "#fff")}}
-                                title="Предыдущий слайд"></button>
-                        </div>
-                    </div>
+                    <h2>Темы каналов</h2>
                     <div className="channel-list__slider">
-                        <ul style={{left: left + 'px'}}>
+                        <ul>
                             {
                                 loading ? <Spinner /> :
                                 channels.map((item, index) => {

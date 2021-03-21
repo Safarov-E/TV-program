@@ -1,20 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {channelsListItemFetchData} from '../../store/actions/channelListItem';
-import ChannelTopics from '../channel-topics';
 import Spinner from '../Spinner';
 import './channel-list-item.css';
 
 class ChannelListItem extends Component {
     componentDidMount() {
-        this.props.fetchData(this.props.match.params.xvid)
+        console.log('componentDidMount()');
+        this.props.fetchData(this.props.match.params.xvid);
     }
     render() {
         const {channels, loading, match} = this.props;
         return (
-            <>
-                <ChannelTopics />
-                <div className="tv-programm__chanels-item">
+            <div className="tv-programm__chanels-item">
                     <div className="tv-programm__channel">
                         <ul>
                             {
@@ -24,13 +22,12 @@ class ChannelListItem extends Component {
                                     const duration = +item.duration;
                                     const h = startProgram.getHours();
                                     const m = startProgram.getMinutes();
-                                    const hours = h < 10 ? ("0" + h) : h
-                                    const minutes = m < 10 ? ("0" + m) : m
-
-                                    const curretTime = Math.floor((new Date()).getTime() / 1000);
+                                    const hours = h < 10 ? ("0" + h) : h;
+                                    const minutes = m < 10 ? ("0" + m) : m;
+                                    const curretTime = (new Date()).getTime() / 1000;
                                     const start = startProgram.getTime() / 1000;
                                     const end = start + duration;
-                                    const currentProgress = 100 - ((end - curretTime) / (duration * 0.1));
+                                    const currentProgress = (curretTime - start) * (100 / duration);
 
                                     return <li key={index}>
                                                 <div className="program__list-link">
@@ -48,7 +45,6 @@ class ChannelListItem extends Component {
                         </ul>
                     </div>
                 </div>
-            </>
         )
     }
 }

@@ -6,8 +6,8 @@ export function channelsListItemFetchDataSuccess(channels) {
 }
 
 export function channelsListItemFetchData(xvid) {
-    let date = new Date();
-    let currentDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+    const date = new Date();
+    const currentDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
     return (dispatch) => {
         fetch(`http://epg.domru.ru/program/list?domain=perm&date_from=${currentDate}+00%3A00%3A00&date_to=${currentDate}+23%3A55%3A00&xvid=${xvid}`)
             .then(response => {

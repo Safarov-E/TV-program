@@ -25,3 +25,50 @@
     color: #fff;
     padding-right: 10px;
 }
+@media screen and (max-width: 1220px) {
+    .view-all-channels {
+        width: 1000px;
+        margin: 50px auto;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .view-all-channels {
+        width: 800px;
+        margin: 50px auto;
+    }
+    .list-channels-item ul li {
+        width: 25%;
+    }
+}
+@media screen and (max-width: 800px) {
+    .view-all-channels {
+        width: 600px;
+        margin: 50px auto;
+    }
+    .list-channels-item ul li {
+        width: 33%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .view-all-channels {
+        width: 500px;
+        margin: 50px auto;
+    }
+    .list-channels-item ul li {
+        width: 50%;
+    }
+}
+@media screen and (max-width: 495px) {
+    .view-all-channels {
+        width: 400px;
+        margin: 50px auto;
+    }
+    .list-channels-item ul li {
+        width: 50%;
+    }
+    .list-channels-item ul li a {
+        color: #fff;
+        padding-right: 10px;
+        font-size: 14px;
+    }
+}
