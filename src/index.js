@@ -10,8 +10,8 @@ import {BrowserRouter} from 'react-router-dom';
 const store = createStore(rootReducer, applyMiddleware(thunk))
 
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
+  <BrowserRouter>
+    <Provider store={store}>
       <App />
-    </BrowserRouter>
-  </Provider>, document.getElementById('root'));
+    </Provider>
+  </BrowserRouter>, document.getElementById('root'));
