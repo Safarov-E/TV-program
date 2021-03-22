@@ -8,9 +8,7 @@ export function channelsListItemFetchDataSuccess(channels) {
     }
 }
 
-export function channelsListItemFetchData(xvid) {
-    const date = new Date();
-    const currentDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+export function channelsListItemFetchData(currentDate, xvid) {
     return (dispatch) => {
         fetch(`${APP_CONFIG.baseUrl}/program/list?domain=perm&date_from=${currentDate}+00%3A00%3A00&date_to=${currentDate}+23%3A55%3A00&xvid=${xvid}`)
             .then(response => {

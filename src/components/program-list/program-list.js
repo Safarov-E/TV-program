@@ -7,7 +7,9 @@ import './program-list.css';
 
 class ProgramList extends Component {
     componentDidMount() {
-        this.props.fetchData(this.props.match.params.xvid);
+        const date = new Date();
+        const currentDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+        this.props.fetchData(currentDate, this.props.match.params.xvid);
     }
     getStringFromTime = (time) => {
         let out = "";
@@ -61,7 +63,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchData: xvid => dispatch(channelsListItemFetchData(xvid))
+        fetchData: (currentDate, xvid) => dispatch(channelsListItemFetchData(currentDate, xvid))
     }
 };
 
