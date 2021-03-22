@@ -4,9 +4,9 @@ import { channelsListFetchData } from '../../store/actions/channelsList';
 import GroupList from '../group-list';
 import Spinner from '../spinner';
 import ChannelsListItem from '../channel-list-item';
-import './channels-list.css';
+import './channel-list.css';
 
-class ChannelsList extends Component {
+class ChannelList extends Component {
     componentDidMount() {
         this.props.fetchData(this.props.match.params.thid);
     }
@@ -54,4 +54,4 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChannelsList);
+export default connect(mapStateToProps, mapDispatchToProps)(ChannelList);

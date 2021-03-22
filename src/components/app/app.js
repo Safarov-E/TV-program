@@ -4,7 +4,7 @@ import Spinner from '../spinner';
 import './app.css';
 
 const GroupList = lazy(() => import('../group-list'));
-const ChannelsList = lazy(() => import('../channels-list'));
+const ChannelList = lazy(() => import('../channel-list'));
 const ProgramList = lazy(() => import('../program-list'));
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
         <Switch>
             <Suspense fallback={<Spinner/>}>
                 <Route path="/" exact component={GroupList} />
-                <Route path="/:thid" exact component={ChannelsList} />
+                <Route path="/:thid" exact component={ChannelList} />
                 <Route path="/:thid/:xvid" exact component={ProgramList} />
             </Suspense>
             <Route component={() => <h1>Page Not Found</h1>} />
