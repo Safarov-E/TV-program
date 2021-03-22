@@ -21,14 +21,14 @@ class ProgramList extends Component {
         return out;
     }
     render() {
-        const {channels, loading, match} = this.props;
+        const {channels, match} = this.props;
         return (
             <div className="tv-programm__chanels-item">
                     <div className="tv-programm__channel">
                         <ul>
                             {
-                                loading || typeof channels[match.params.xvid] === 'undefined' ? <Spinner /> :
-                                channels[this.props.match.params.xvid].map((item, index) => {
+                                !channels[match.params.xvid] ? <Spinner /> :
+                                channels[match.params.xvid].map((item, index) => {
                                     const startProgram = new Date(item.start);
                                     const duration = +item.duration;
 
@@ -56,8 +56,7 @@ class ProgramList extends Component {
 
 const mapStateToProps = state => {
     return {
-        channels: state.channelListItem.channelListItem,
-        loading: state.channelListItem.loading
+        channels: state.channelListItem.channelListItem
     }
 };
 

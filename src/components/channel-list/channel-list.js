@@ -28,7 +28,7 @@ class ChannelList extends Component {
                                                     logo={item.logo}
                                                     title={item.title}
                                                     thid={this.props.match.params.thid}
-                                                    xvid={item.thid}
+                                                    xvid={item.xvid}
                                                 />
                                     })
                                 }
