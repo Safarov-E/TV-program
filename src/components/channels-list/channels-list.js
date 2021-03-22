@@ -3,8 +3,7 @@ import {connect} from 'react-redux';
 import { channelsListFetchData } from '../../store/actions/channelsList';
 import GroupList from '../group-list';
 import Spinner from '../spinner';
-import {Link} from 'react-router-dom';
-import APP_CONFIG from '../../config';
+import ChannelsListItem from '../channel-list-item';
 import './channels-list.css';
 
 class ChannelsList extends Component {
@@ -24,10 +23,13 @@ class ChannelsList extends Component {
                                 {
                                     loading ? <Spinner /> :
                                     channels.map((item, index) => {
-                                        return <li key={index}>
-                                            <img src={APP_CONFIG.baseUrl + item.logo} alt={item.title} />
-                                            <Link to={'/' + this.props.match.params.thid + '/' + item.xvid}>{item.title}</Link>
-                                        </li>
+                                        return <ChannelsListItem 
+                                                    key={index}
+                                                    logo={item.logo}
+                                                    title={item.title}
+                                                    thid={this.props.match.params.thid}
+                                                    xvid={item.thid}
+                                                />
                                     })
                                 }
                             </ul>
