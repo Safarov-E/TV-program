@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { channelsFetchData } from '../../store/actions/channels';
 import { channelsListFetchData } from '../../store/actions/channelsList';
-import {NavLink} from 'react-router-dom';
+import GroupListItem from '../group-list-item';
 import Spinner from '../spinner';
 import './group-list.css';
 
@@ -24,9 +24,12 @@ class GroupList extends Component {
                             {
                                 loading ? <Spinner /> :
                                 channels.map((item, index) => {
-                                    return <li key={index}>
-                                        <NavLink to={"/" + item.thid} onClick={() => this.listOfChannels(item.thid)}>{item.name}</NavLink>
-                                    </li>
+                                    return <GroupListItem 
+                                        key={index}
+                                        listOfChannels={this.listOfChannels}
+                                        thid={item.thid}
+                                        name={item.name}
+                                    />
                                 })
                             }
                         </ul>
